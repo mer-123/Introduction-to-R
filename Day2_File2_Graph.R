@@ -28,8 +28,11 @@ barplot(t2)
 
 #Gender
 t3 = table(students$gender)
-barplot(t3)
-title('This is bar plot', sub = 'Subtitle') #To 
+barplot(t3, col=1:2)                        #Adding Color
+barplot(t3, col =c('red','green'))          #Adding Color
+title('This is bar plot', sub = 'Subtitle') #Editing  
 pie(t3)
+
+
 
 
