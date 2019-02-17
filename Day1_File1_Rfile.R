@@ -211,7 +211,7 @@ students2 = read.csv('fms.csv')
 head(students2)
 
 #If we don't remeber the file name or the name is 
-students3 = read.csv(file.choose( ))
+students3 = read.csv(file.choose( )) #When dats is not in the known path/desktop
 head(students3)
 
 quantile(students$marks1, probs=seq(0,1,.01))  #Percentile
@@ -231,4 +231,81 @@ students %>% group_by(gender) %>% summarise (mean(marks1), mean(marks2))
 students %>% group_by(college) %>% summarise(max(marks1), max(marks2))
 students %>% filter(college == 'FMS') %>% select(marks1,marks2)
 
-######
+?%>%
+  
+
+############################
+# DAY2 || DAY2 || DAY2 || DAY2 || DAY2 || DAY2 || DAY2 || DAY2 ||
+students[ ,c(2;(5:6))]
+str(students)
+summary(students)
+
+#Factor to character
+
+#Packages
+library(dplyr)
+library(dplyr3)
+
+#Began with Data Summarization using dplyr - Creating Data
+
+#Raising Queries From Student Data Using dplyr (%>%)
+#1. Females of SRCC
+students[students$gender=='F' &  students$colleges =='SRCC', ]
+
+#2. Males whose marks are greater than 60 in marks1
+students %>% filter(gender=='M' & marks1 >60)
+
+#3. Statistical study by Group by clause 
+#Gender wise
+
+#College wise
+students %>% group_by(college) %>% summarise(max(marks1), mean(marks2))
+
+# Gender Wise
+students %>% group_by(gender) %>% summarise(max(marks1), mean(marks2)) 
+
+#
+students %>% group_by(rollno) %>% summarise(max(marks1), max(marks2))
+
+#
+students %>% group_by(gender,college) %>% summarise(countTotal=n(), mean(marks1), mean(marks2)) %>% mutate(totalMarks = marks1+marks2)
+
+#
+students %>% tally()
+
+#
+students %>% group_by(gender,college) %>% summarise(countTotal=n(), mean(marks1), max(marks2))
+
+#4. Add a column using Mutate in dplyr
+students %>% mutate(totalMarks = marks1 + marks2)
+
+# Using Mutate: Increase marks2 by 20%
+students %>% mutate(totalMarks = marks1 + 1.2*marks2)
+
+# Sort this new mutated list 
+# Increasing Order
+students %>% mutate(totalMarks = marks1 + 1.2*marks2) %>% arrange(totalMarks)
+#Decreasing Order
+students %>% mutate(totalMarks = marks1 + 1.2*marks2) %>% arrange(-totalMarks)
+#Decreasing Order with Top 2 Marks
+students %>% mutate(totalMarks = marks1 + 1.2*marks2) %>% arrange(-totalMarks) %>% head(n=2)
+
+#5. Alternate rows using slice
+students %>% slice(1)
+students %>% slice(1:5)
+students %>% slice(seq(1,30,2))
+students %>% slice(seq(1,30,4))
+
+#6. Sample n: defining by number - Taking any random number
+students %>% sample_n(5)    #Random 5 Rows
+students %>% sample_frac(.2) #Random 20%
+
+#Student which got max total marks without arranging the data in the first place || Using Filter
+students %>% mutate(totalMarks = marks1 + 1.2 * marks2) %>% filter(totalMarks == max(totalMarks))
+
+## Import a file from excel and google sheets
+
+library(rJava)
+libaray(xlsx)
+
+  
