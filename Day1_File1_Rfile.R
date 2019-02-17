@@ -230,3 +230,5 @@ students %>% filter (gender == 'M')
 students %>% group_by(gender) %>% summarise (mean(marks1), mean(marks2))
 students %>% group_by(college) %>% summarise(max(marks1), max(marks2))
 students %>% filter(college == 'FMS') %>% select(marks1,marks2)
+
+######
